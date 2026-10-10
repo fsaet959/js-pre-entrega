@@ -1,38 +1,57 @@
-let seguir = "si"
-while (seguir === "si") {
+let seguir = true
+while (seguir) {
 
-alert("Bienvenido a BK")
-console.log ("Preparemos tu combo")
-console.log("Hamburguesa simple")
-console.log("Hamburguesa con queso")
-console.log ("Hamburguesa con queso y panceta")
-console.log ("Hamburguesa completa")
+    // funcion 1
+function saludar(nombre) { 
+    alert("Bienvenido/a a BK, " + nombre)
+}
+saludar(prompt("Escribi tu nombre:"))
 
+console.log("Resumen de tu pedido: ")
+let opcionValida = false
+let hamburguesa
+let precioHamburguesa = 0
+let precioPapas = 0
+let precioGaseosa = 0
 
+// ciclo que se repite si la opcion no es valida
 
-let hamburguesa = parseInt(prompt("Selecciona una opcion:"))
+do {
+ hamburguesa = parseInt(prompt("Preparemos tu pedido, Nuestro menu: \n" + "1)Hamburguesa Simple. Precio: $5\n" + "2)Hamgurguesa con queso. Precio: $7\n" + "3)Hamburguesa con queso y panceta. Precio: $8 \n" + "4)Hamburguesa completa. Precio: $9\n" + "Selecciona una opcion:"))
 
 switch(hamburguesa) {
     case 1:
-        console.log("Hamburguesa simple")
+        console.log("Hamburguesa simple. Precio: $5")
+        precioHamburguesa = 5
+        opcionValida = true
         break
     case 2:
-        console.log("Hamburguesa con queso")
+        console.log("Hamburguesa con queso. Precio: $7")
+        precioHamburguesa = 7
+        opcionValida = true
         break
     case 3:
-        console.log ("Hamburguesa con queso y panceta")
+        console.log ("Hamburguesa con queso y panceta. Precio: $8")
+        precioHamburguesa = 8
+        opcionValida = true
         break
     case 4:
-        console.log ("Hamburguesa completa")
+        console.log ("Hamburguesa completa. Precio: $9")
+        precioHamburguesa = 9
+        opcionValida = true
         break
-}
-
+    default:
+       alert("La opcion ingresada no es válida")
+       break
+       }
+     } while (!opcionValida)
 
 // segunda parte
-let guarnicion = prompt("Desea agregar papas?").toLowerCase()
+let guarnicion = confirm("Desea agregar papas por $2?")
 
-if (guarnicion === "si") {
-    console.log ("Agregaste papas")
+if (guarnicion === true) {
+    console.log ("Agregaste papas. +$2")
+    precioPapas = 2
 
 } else {
     console.log ("Sin guarnicion")
@@ -40,20 +59,43 @@ if (guarnicion === "si") {
 
 // tercera parte
 
-let gaseosa = prompt("Desea agregar gaseosa refill?").toLowerCase()
+let gaseosa = confirm("Desea agregar gaseosa refill por $5?")
 
-if (gaseosa === "si") {
-    console.log ("Agregaste gaseosa refill")
+if (gaseosa === true) {
+    console.log ("Agregaste gaseosa refill. +$5")
+    precioGaseosa = 5
 } else {
-    console.log ("sin gaseosa")
+    console.log ("Sin gaseosa")
 }
 
+// funcion flecha para calcular total del pedido
 
+const calcularTotal = (precioHamburguesa, precioGaseosa, precioPapas) => precioHamburguesa + precioPapas + precioGaseosa
+
+let total = calcularTotal(precioHamburguesa, precioGaseosa, precioPapas)
+
+console.log("Subtotal: " + total)
+
+// funcion 3 con retorno
+
+function calcularDescuento(total, porcentaje){
+    return total - (total * (porcentaje / 100))
+}
+let codigo = prompt("Codigo de descuento, si tenes:")
+
+if (codigo === "NewClient") {
+    let totalConDescuento = calcularDescuento(total,10)
+    console.log("Codigo valido, aplicando 10% off")
+    console.log("Total con descuento: $" + totalConDescuento)
+} else {
+    console.log("Codigo invalido o no ingresado")
+    console.log("Total final: $" + total)
+}
 // ciclo
 
-seguir = prompt("Desea hacer otro pedido?").toLowerCase()
+seguir = confirm("Desea hacer otro pedido?")
 }
 
-console.log("Muchas gracias por elegirnos, vamos a preparar tu pedido...")
+console.log("Muchas gracias por elegirnos, " + nombre + "vamos a preparar tu pedido...")
 
 
