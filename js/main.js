@@ -74,7 +74,7 @@ const calcularTotal = (precioHamburguesa, precioGaseosa, precioPapas) => precioH
 
 let total = calcularTotal(precioHamburguesa, precioGaseosa, precioPapas)
 
-console.log("Subtotal: " + total)
+console.log("Subtotal: $" + total)
 
 // funcion 3 con retorno
 
