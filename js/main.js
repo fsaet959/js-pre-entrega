@@ -96,6 +96,6 @@ if (codigo === "NewClient") {
 seguir = confirm("Desea hacer otro pedido?")
 }
 
-console.log("Muchas gracias por elegirnos, " + nombre + "vamos a preparar tu pedido...")
+console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
 
 
