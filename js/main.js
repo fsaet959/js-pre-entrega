@@ -1,10 +1,21 @@
-let seguir = true
-while (seguir) {
-
-    // funcion 1
+   // funcion 1
 function saludar(nombre) { 
     alert("Bienvenido/a a BK, " + nombre)
 }
+// funcion flecha para calcular total del pedido
+
+const calcularTotal = (precioHamburguesa, precioGaseosa, precioPapas) => precioHamburguesa + precioPapas + precioGaseosa
+
+// funcion 3 con retorno
+
+function calcularDescuento(total, porcentaje){
+    return total - (total * (porcentaje / 100))
+}
+
+let seguir = true
+
+while (seguir) {
+
 saludar(prompt("Escribi tu nombre:"))
 
 console.log("Resumen de tu pedido: ")
@@ -68,19 +79,12 @@ if (gaseosa === true) {
     console.log ("Sin gaseosa")
 }
 
-// funcion flecha para calcular total del pedido
-
-const calcularTotal = (precioHamburguesa, precioGaseosa, precioPapas) => precioHamburguesa + precioPapas + precioGaseosa
 
 let total = calcularTotal(precioHamburguesa, precioGaseosa, precioPapas)
 
 console.log("Subtotal: $" + total)
 
-// funcion 3 con retorno
 
-function calcularDescuento(total, porcentaje){
-    return total - (total * (porcentaje / 100))
-}
 let codigo = prompt("Codigo de descuento, si tenes:")
 
 if (codigo === "NewClient") {
