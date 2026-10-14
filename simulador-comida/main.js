@@ -130,7 +130,7 @@ for (const ingrediente of ingredientesHamburguesaCompleta) {
 
 }
 
-// chequear si el menu para celiacos contiene cierto ingrediente
+// chequear si el menu para celiacos contiene x ingrediente
 
 const buscado = prompt("Ingresa un ingrediente para verificar si esta disponible en el menu sin TACC")
 .toLowerCase()
@@ -141,4 +141,5 @@ if (ingredientesHamburguesaCompleta.includes(buscado)) {
 } else {
     console.log(`El menu no contiene ${buscado}`)
 }
-    
+
+// para prox pre-entrega: ver manera de poner esto ultimo solo cuando el usuario elige la opcion 4 
