@@ -104,7 +104,7 @@ console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
 
 // arrays 
 
-let ingredientesHamburguesaCompleta = ["Pan", "Hamburguesa", "Queso", "Tomate", "Lechuga", "Huevo"]
+let ingredientesHamburguesaCompleta = ["pan", "hamburguesa", "queso", "tomate", "lechuga", "huevo"]
 
 console.log("Ingredientes de la hamburguesa completa: " + ingredientesHamburguesaCompleta.join(" - "))
 
@@ -116,12 +116,29 @@ console.log("Eliminamos el huevo: " + ingredientesHamburguesaCompleta.join(" - "
 
 // push - agregar al final: Aderezo especial
 
-ingredientesHamburguesaCompleta.push("Aderezo especial")
+ingredientesHamburguesaCompleta.push("aderezo especial")
 console.log("Sumamos el aderezo especial: " + ingredientesHamburguesaCompleta.join(" - "))
 
 // splice - reemplazar el pan por opcion apta celiaco
 
-ingredientesHamburguesaCompleta.splice(0,1,"Pan de Papa")
+ingredientesHamburguesaCompleta.splice(0,1,"pan de papa")
 
-// mostrar cada ingrediente del menu para celiacos 
+// mostrar cada ingrediente del menu para celiacos con for...of
 
+for (const ingrediente of ingredientesHamburguesaCompleta) {
+    console.log("Ingrediente apto para celiacos: " + ingrediente)
+
+}
+
+// chequear si el menu para celiacos contiene cierto ingrediente
+
+const buscado = prompt("Ingresa un ingrediente para verificar si esta disponible en el menu sin TACC")
+.toLowerCase()
+.trim()
+
+if (ingredientesHamburguesaCompleta.includes(buscado)) {
+    console.log(`El menu contiene: ${buscado}`)
+} else {
+    console.log(`El menu no contiene ${buscado}`)
+}
+    
