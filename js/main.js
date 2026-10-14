@@ -2,7 +2,7 @@
 function saludar(nombre) { 
     alert("Bienvenido/a a BK, " + nombre)
 }
-// funcion flecha para calcular total del pedido
+// funcion 2 flecha para calcular total del pedido
 
 const calcularTotal = (precioHamburguesa, precioGaseosa, precioPapas) => precioHamburguesa + precioPapas + precioGaseosa
 
@@ -102,4 +102,26 @@ seguir = confirm("Desea hacer otro pedido?")
 
 console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
 
+// arrays 
+
+let ingredientesHamburguesaCompleta = ["Pan", "Hamburguesa", "Queso", "Tomate", "Lechuga", "Huevo"]
+
+console.log("Ingredientes de la hamburguesa completa: " + ingredientesHamburguesaCompleta.join(" - "))
+
+
+//  pop - quitar al final: 
+
+ingredientesHamburguesaCompleta.pop()
+console.log("Eliminamos el huevo: " + ingredientesHamburguesaCompleta.join(" - "))
+
+// push - agregar al final: Aderezo especial
+
+ingredientesHamburguesaCompleta.push("Aderezo especial")
+console.log("Sumamos el aderezo especial: " + ingredientesHamburguesaCompleta.join(" - "))
+
+// splice - reemplazar el pan por opcion apta celiaco
+
+ingredientesHamburguesaCompleta.splice(0,1,"Pan de Papa")
+
+// mostrar cada ingrediente del menu para celiacos 
 
