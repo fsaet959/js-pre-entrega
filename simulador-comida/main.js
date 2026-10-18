@@ -102,11 +102,41 @@ if (esCeliaco) {
 } 
 
 // recorrer con for of
-console.log("Ingredientes de tu hamburguesa:")
 mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
 
 
-let modificarIngredientes = prompt( "Queres modificar los ingredientes?\n" + "1)Quitar un ingrediente\n" "2)Agregar aderezo especial \n" + "3)No quiero modificar\n" + "Ingresa una opcion: (1, 2 o 3)" )
+let modificarIngredientes = parseInt(prompt( "Queres modificar los ingredientes?\n" + "1)Quitar un ingrediente\n" + "2)Agregar aderezo especial\n" + "3)No quiero modificar\n" + "Ingresa una opcion: (1, 2 o 3)"))
+
+if (modificarIngredientes === 1) {
+    let ingredienteAEliminar = prompt("Escribi el ingrediente que queres quitar:").toLowerCase
+    
+    const indice = hamburguesaSeleccionada.ingredientes.findIndex(
+        ing => ing.toLowerCase() === ingredienteAEliminar
+    ) 
+
+    if (indice !== -1) {
+        const eliminado = hamburguesaSeleccionada.ingredientes.splice(indice, 1)
+        console.log(`Quitamos el ingrediente: ${eliminado}`)
+    } else {
+        console.log("Ese ingrediente no está en la hamburguesa")
+    }
+
+    } else if (modificarIngredientes === 2) {
+
+        hamburguesa.Seleccionada.ingredientes.push("aderezo especial")
+        console.log("Agregamos aderezo especial a tu hamburguesa")
+    }
+
+    else {
+        console.log("Menu sin modificar")
+    }
+
+    // mostrar ingredientes
+
+    console.log ("Ingredientes de tu hamburguesa: ")
+    mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
+
+
 // segunda parte
 
 let precioPapas = 0
@@ -167,42 +197,3 @@ seguir = confirm("Desea hacer otro pedido?")
 
 console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
 
-// // arrays 
-
-// let ingredientesHamburguesaCompleta = ["pan", "hamburguesa", "queso", "tomate", "lechuga", "huevo"]
-
-// console.log("Ingredientes de la hamburguesa completa: " + ingredientesHamburguesaCompleta.join(" - "))
-
-
-// //  pop - quitar al final: 
-
-// const eliminado = ingredientesHamburguesaCompleta.pop()
-// console.log(`Eliminamos: ${eliminado}`)
-
-// // push - agregar al final: Aderezo especial
-
-// ingredientesHamburguesaCompleta.push("aderezo especial")
-// console.log("Sumamos el aderezo especial: " + ingredientesHamburguesaCompleta.join(" - "))
-
-// // splice - reemplazar el pan por opcion apta celiaco
-
-// ingredientesHamburguesaCompleta.splice(0,1,"pan de papa")
-
-// // mostrar cada ingrediente del menu para celiacos con for...of
-
-// mostrarIngredientes(ingredientesHamburguesaCompleta)
-
-
-// // chequear si el menu para celiacos contiene x ingrediente
-
-// const buscado = prompt("Ingresa un ingrediente para verificar si esta disponible en el menu sin TACC")
-// .toLowerCase()
-// .trim()
-
-// if (ingredientesHamburguesaCompleta.includes(buscado)) {
-//     console.log(`El menu contiene: ${buscado}`)
-// } else {
-//     console.log(`El menu no contiene ${buscado}`)
-// }
-
-// para prox pre-entrega: ver manera de poner esto ultimo solo cuando el usuario elige la opcion 4 
