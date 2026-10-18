@@ -90,7 +90,23 @@ switch(hamburguesa) {
 
 console.log(`Elegiste: ${hamburguesaSeleccionada.nombre} Subtotal: $${hamburguesaSeleccionada.precioInicial}`)
 
+// Opcion menu sin TACC
 
+let esCeliaco = confirm("¿Deseas que el menu sea sin TACC?")
+
+if (esCeliaco) {
+    console.log("Opción Sin TACC: reemplazamos pan por pan de papa")
+    hamburguesaSeleccionada.ingredientes.splice(0, 1, "pan de papa") // reemplazamos el primer ingrediente 
+} else {
+    console.log("Menu con pan tradicional")
+} 
+
+// recorrer con for of
+console.log("Ingredientes de tu hamburguesa:")
+mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
+
+
+let modificarIngredientes = prompt( "Queres modificar los ingredientes?\n" + "1)Quitar un ingrediente\n" "2)Agregar aderezo especial \n" + "3)No quiero modificar\n" + "Ingresa una opcion: (1, 2 o 3)" )
 // segunda parte
 
 let precioPapas = 0
