@@ -1,4 +1,19 @@
-   // funcion 1
+// definir clase
+
+class Hamburguesa {
+    constructor(id, nombre, precioInicial, ingredientes) {
+        this.id = id
+        this.nombre = nombre
+        this.precioInicial = precioInicial
+        this.ingredientes = ingredientes
+        this.precioTotal = precioInicial
+    }
+   
+}
+
+//
+
+// funcion 1
 function saludar(nombre) { 
     alert("Bienvenido/a a BK, " + nombre)
 }
@@ -21,6 +36,15 @@ function mostrarIngredientes(lista) {
       console.log("* " + ingrediente)
   }
 }
+
+
+// instancias (id, nombre, precioInicial, ingredientes) 
+
+const hamburguesasimple = new Hamburguesa(1001,"Hamburguesa simple", 5, ["pan", "hamburguesa"])
+const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 6, ["pan", "hamburguesa", "queso"])
+const hamburguesaBacon = new Hamburguesa (1003, "Hamburguesa con panceta y queso", 8, ["pan", "hamburguesa", "queso", "panceta"])
+const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"])
+
 
 let seguir = true
 
