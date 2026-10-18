@@ -12,6 +12,16 @@ function calcularDescuento(total, porcentaje){
     return total - (total * (porcentaje / 100))
 }
 
+// funcion de reporte 
+
+function mostrarIngredientes(lista) {
+
+    console.log("Ingredientes incluidos en el menu: ")
+    for (const ingrediente of lista) {
+      console.log("* " + ingrediente)
+  }
+}
+
 let seguir = true
 
 while (seguir) {
@@ -125,10 +135,8 @@ ingredientesHamburguesaCompleta.splice(0,1,"pan de papa")
 
 // mostrar cada ingrediente del menu para celiacos con for...of
 
-for (const ingrediente of ingredientesHamburguesaCompleta) {
-    console.log("Ingrediente apto para celiacos: " + ingrediente)
+mostrarIngredientes(ingredientesHamburguesaCompleta)
 
-}
 
 // chequear si el menu para celiacos contiene x ingrediente
 
