@@ -30,7 +30,6 @@ function saludar(nombre) {
 
 function mostrarIngredientes(lista) {
 
-    console.log("Ingredientes incluidos en el menu: ")
     for (const ingrediente of lista) {
       console.log("* " + ingrediente)
   }
@@ -40,7 +39,7 @@ function mostrarIngredientes(lista) {
 // instancias (id, nombre, precioInicial, ingredientes) 
 
 const hamburguesaSimple = new Hamburguesa(1001,"Hamburguesa simple", 5, ["pan", "hamburguesa"])
-const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 6, ["pan", "hamburguesa", "queso"])
+const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 7, ["pan", "hamburguesa", "queso"])
 const hamburguesaBacon = new Hamburguesa (1003, "Hamburguesa con panceta y queso", 8, ["pan", "hamburguesa", "queso", "panceta"])
 const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"])
 
@@ -59,7 +58,7 @@ let hamburguesaSeleccionada = null
 // ciclo que se repite si la opcion no es valida
 
 do {
- hamburguesa = parseInt(prompt("Preparemos tu pedido, Nuestro menu: \n" + "1)Hamburguesa Simple. Precio: $5\n" + "2)Hamgurguesa con queso. Precio: $7\n" + "3)Hamburguesa con queso y panceta. Precio: $8 \n" + "4)Hamburguesa completa. Precio: $9\n" + "Selecciona una opcion:"))
+ hamburguesa = parseInt(prompt("Preparemos tu pedido, Nuestro menu: \n" + "1)Hamburguesa Simple. Precio: $5\n" + "2)Hamgurguesa con queso. Precio: $7\n" + "3)Hamburguesa con queso y panceta. Precio: $8 \n" + "4)Hamburguesa completa. Precio: $10\n" + "Selecciona una opcion:"))
 
 switch(hamburguesa) {
     case 1:
@@ -78,7 +77,7 @@ switch(hamburguesa) {
         opcionValida = true
         break
     case 4:
-        console.log ("Hamburguesa completa. Precio: $9")
+        console.log ("Hamburguesa completa. Precio: $10")
         hamburguesaSeleccionada = hamburguesaCompleta
         opcionValida = true
         break
@@ -102,13 +101,14 @@ if (esCeliaco) {
 } 
 
 // recorrer con for of
+console.log("Ingredientes de tu hamburguesa:")
 mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
 
 
 let modificarIngredientes = parseInt(prompt( "Queres modificar los ingredientes?\n" + "1)Quitar un ingrediente\n" + "2)Agregar aderezo especial\n" + "3)No quiero modificar\n" + "Ingresa una opcion: (1, 2 o 3)"))
 
 if (modificarIngredientes === 1) {
-    let ingredienteAEliminar = prompt("Escribi el ingrediente que queres quitar:").toLowerCase
+    let ingredienteAEliminar = prompt("Escribi el ingrediente que queres quitar:").toLowerCase()
     
     const indice = hamburguesaSeleccionada.ingredientes.findIndex(
         ing => ing.toLowerCase() === ingredienteAEliminar
@@ -123,7 +123,7 @@ if (modificarIngredientes === 1) {
 
     } else if (modificarIngredientes === 2) {
 
-        hamburguesa.Seleccionada.ingredientes.push("aderezo especial")
+        hamburguesaSeleccionada.ingredientes.push("aderezo especial")
         console.log("Agregamos aderezo especial a tu hamburguesa")
     }
 
@@ -189,11 +189,11 @@ if (codigo === "NewClient") {
 
 
 
-
 // ciclo
 
 seguir = confirm("Desea hacer otro pedido?")
 }
 
 console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
+
 
