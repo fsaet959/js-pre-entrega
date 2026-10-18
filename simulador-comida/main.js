@@ -111,8 +111,8 @@ console.log("Ingredientes de la hamburguesa completa: " + ingredientesHamburgues
 
 //  pop - quitar al final: 
 
-ingredientesHamburguesaCompleta.pop()
-console.log("Eliminamos el huevo: " + ingredientesHamburguesaCompleta.join(" - "))
+const eliminado = ingredientesHamburguesaCompleta.pop()
+console.log(`Eliminamos: ${eliminado}`)
 
 // push - agregar al final: Aderezo especial
 
