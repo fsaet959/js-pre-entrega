@@ -18,12 +18,17 @@ sumarIva(porcentajeIva) {
     this.precioTotal = this.precioTotal * (1 + porcentajeIva/100)
 }
 
-aplicarDescuento(porcentajeDescuento) {
-    this.precioTotal = this.precioTotal - (this.precioTotal *(porcentajeDescuento / 100))
-}
+// funcion descuentos
+
+function calcularPrecioFinal(precio, funcionDescuento) {
+    const descuento = funcionDescuento(precio)
+    return precio - descuento 
 }
 
-// funcion 1
+const NewClient = (precio) => precio * 0.10
+const SegundaCompra = (precio) => precio * 0.20
+
+// funcion saludo
 function saludar(nombre) { 
     alert("Bienvenido/a a BK, " + nombre)
 }
@@ -54,20 +59,19 @@ const Hamburguesas = [
     hamburguesaCompleta
 ]
 
-console.log(Hamburguesas)
+// Metodo de busqueda 1 filter
 
-// filter
-
-let ingestacalorica = parseInt(prompt("Introduzca el tope de calorias que desea comer"))
+let ingestacalorica = parseInt(prompt("Introduzca el limite calorico"))
 
 const resultadoIngCalorica = Hamburguesas.filter((hamburguesa) => 
     hamburguesa.calorias  <= ingestacalorica
 )
+console.log("Hamburguesas dentro del limite calorico: ")
 console.log(resultadoIngCalorica)
 
-// busqueda por ingrediente find
+// Metodo de busqueda 2  busqueda por ingrediente find
 
-let busquedaIngrediente = prompt("Ingrese el ingrediente que quiere en su hamburguesa").toLowerCase
+let busquedaIngrediente = prompt("Ingrese el ingrediente que quiere en su hamburguesa").toLowerCase()
 
 const hamburguesaEncontrada = Hamburguesas.find((hamburguesa) =>
   hamburguesa.ingredientes.some((ingrediente) =>
@@ -76,165 +80,167 @@ const hamburguesaEncontrada = Hamburguesas.find((hamburguesa) =>
   )
 
   if (hamburguesaEncontrada) {
-      console.log(`Probá la hamburguesa ${hamburguesaEncontrada.nombre}`)
+      console.log(`Probá nuestra ${hamburguesaEncontrada.nombre}`)
       } else{
         console.log("No tenemos ese ingrediente en ningun menu")
       }
 
 
+let seguir = true
+
+while (seguir) {
+
+saludar(prompt("Escribi tu nombre:"))
+
+console.log("Resumen de tu pedido: ")
+let opcionValida = false
+let hamburguesaSeleccionada = null
+
+// ciclo que se repite si la opcion no es valida
+
+do {
+  let hamburguesa = parseInt(prompt("Preparemos tu pedido, Nuestro menu: \n" + "1)Hamburguesa Simple. Precio: $5\n" + "2)Hamgurguesa con queso. Precio: $7\n" + "3)Hamburguesa con queso y panceta. Precio: $8 \n" + "4)Hamburguesa completa. Precio: $10\n" + "Selecciona una opcion:"))
+
+switch(hamburguesa) {
+    case 1:
+        console.log("Hamburguesa simple. Precio: $5")
+        hamburguesaSeleccionada = hamburguesaSimple
+        opcionValida = true
+        break
+    case 2:
+        console.log("Hamburguesa con queso. Precio: $7")
+        hamburguesaSeleccionada = hamburguesaQueso
+        opcionValida = true
+        break
+    case 3:
+        console.log ("Hamburguesa con queso y panceta. Precio: $8")
+        hamburguesaSeleccionada = hamburguesaBacon
+        opcionValida = true
+        break
+    case 4:
+        console.log ("Hamburguesa completa. Precio: $10")
+        hamburguesaSeleccionada = hamburguesaCompleta
+        opcionValida = true
+        break
+    default:
+       alert("La opcion ingresada no es válida")
+       break
+       }
+     } while (!opcionValida)
+
+console.log(`Elegiste: ${hamburguesaSeleccionada.nombre} Subtotal: $${hamburguesaSeleccionada.precioInicial}`)
+
+// Opcion menu sin TACC
+
+let esCeliaco = confirm("¿Deseas que el menu sea sin TACC?")
+
+if (esCeliaco) {
+    console.log("Opción Sin TACC: reemplazamos pan por pan de papa")
+    hamburguesaSeleccionada.ingredientes.splice(0, 1, "pan de papa") // reemplazamos el primer ingrediente 
+} else {
+    console.log("Menu con pan tradicional")
+} 
+
+// recorrer con for of
+console.log("Ingredientes de tu hamburguesa:")
+mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
 
 
+let modificarIngredientes = parseInt(prompt( "Queres modificar los ingredientes?\n" + "1)Quitar un ingrediente\n" + "2)Agregar aderezo especial\n" + "3)No quiero modificar\n" + "Ingresa una opcion: (1, 2 o 3)"))
 
-
-// let seguir = true
-
-// while (seguir) {
-
-// saludar(prompt("Escribi tu nombre:"))
-
-// console.log("Resumen de tu pedido: ")
-// let opcionValida = false
-// let hamburguesa
-// let hamburguesaSeleccionada = null
-
-// // ciclo que se repite si la opcion no es valida
-
-// do {
-//  hamburguesa = parseInt(prompt("Preparemos tu pedido, Nuestro menu: \n" + "1)Hamburguesa Simple. Precio: $5\n" + "2)Hamgurguesa con queso. Precio: $7\n" + "3)Hamburguesa con queso y panceta. Precio: $8 \n" + "4)Hamburguesa completa. Precio: $10\n" + "Selecciona una opcion:"))
-
-// switch(hamburguesa) {
-//     case 1:
-//         console.log("Hamburguesa simple. Precio: $5")
-//         hamburguesaSeleccionada = hamburguesaSimple
-//         opcionValida = true
-//         break
-//     case 2:
-//         console.log("Hamburguesa con queso. Precio: $7")
-//         hamburguesaSeleccionada = hamburguesaQueso
-//         opcionValida = true
-//         break
-//     case 3:
-//         console.log ("Hamburguesa con queso y panceta. Precio: $8")
-//         hamburguesaSeleccionada = hamburguesaBacon
-//         opcionValida = true
-//         break
-//     case 4:
-//         console.log ("Hamburguesa completa. Precio: $10")
-//         hamburguesaSeleccionada = hamburguesaCompleta
-//         opcionValida = true
-//         break
-//     default:
-//        alert("La opcion ingresada no es válida")
-//        break
-//        }
-//      } while (!opcionValida)
-
-// console.log(`Elegiste: ${hamburguesaSeleccionada.nombre} Subtotal: $${hamburguesaSeleccionada.precioInicial}`)
-
-// // Opcion menu sin TACC
-
-// let esCeliaco = confirm("¿Deseas que el menu sea sin TACC?")
-
-// if (esCeliaco) {
-//     console.log("Opción Sin TACC: reemplazamos pan por pan de papa")
-//     hamburguesaSeleccionada.ingredientes.splice(0, 1, "pan de papa") // reemplazamos el primer ingrediente 
-// } else {
-//     console.log("Menu con pan tradicional")
-// } 
-
-// // recorrer con for of
-// console.log("Ingredientes de tu hamburguesa:")
-// mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
-
-
-// let modificarIngredientes = parseInt(prompt( "Queres modificar los ingredientes?\n" + "1)Quitar un ingrediente\n" + "2)Agregar aderezo especial\n" + "3)No quiero modificar\n" + "Ingresa una opcion: (1, 2 o 3)"))
-
-// if (modificarIngredientes === 1) {
-//     let ingredienteAEliminar = prompt("Escribi el ingrediente que queres quitar:").toLowerCase()
+if (modificarIngredientes === 1) {
+    let ingredienteAEliminar = prompt("Escribi el ingrediente que queres quitar:").toLowerCase()
     
-//     const indice = hamburguesaSeleccionada.ingredientes.findIndex(
-//         ing => ing.toLowerCase() === ingredienteAEliminar
-//     ) 
+    const indice = hamburguesaSeleccionada.ingredientes.findIndex(
+        ing => ing.toLowerCase() === ingredienteAEliminar
+    ) 
 
-//     if (indice !== -1) {
-//         const eliminado = hamburguesaSeleccionada.ingredientes.splice(indice, 1)
-//         console.log(`Quitamos el ingrediente: ${eliminado}`)
-//     } else {
-//         console.log("Ese ingrediente no está en la hamburguesa")
-//     }
+    if (indice !== -1) {
+        const eliminado = hamburguesaSeleccionada.ingredientes.splice(indice, 1)
+        console.log(`Quitamos el ingrediente: ${eliminado}`)
+    } else {
+        console.log("Ese ingrediente no está en la hamburguesa")
+    }
 
-//     } else if (modificarIngredientes === 2) {
+    } else if (modificarIngredientes === 2) {
 
-//         hamburguesaSeleccionada.ingredientes.push("aderezo especial")
-//         console.log("Agregamos aderezo especial a tu hamburguesa")
-//     }
+        hamburguesaSeleccionada.ingredientes.push("aderezo especial")
+        console.log("Agregamos aderezo especial a tu hamburguesa")
+    }
 
-//     else {
-//         console.log("Menu sin modificar")
-//     }
+    else {
+        console.log("Menu sin modificar")
+    }
 
-//     // mostrar ingredientes
+    // mostrar ingredientes
 
-//     console.log ("Ingredientes de tu hamburguesa: ")
-//     mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
-
-
-// // segunda parte
-
-// let precioPapas = 0
-// let precioGaseosa = 0
-
-// let guarnicion = confirm("Desea agregar papas por $2?")
-
-// if (guarnicion === true) {
-//     console.log ("Agregaste papas. +$2")
-//     precioPapas = 2
-
-// } else {
-//     console.log ("Sin guarnicion")
-// }
-
-// // tercera parte
-
-// let gaseosa = confirm("Desea agregar gaseosa refill por $5?")
-
-// if (gaseosa === true) {
-//     console.log ("Agregaste gaseosa refill. +$5")
-//     precioGaseosa = 5
-// } else {
-//     console.log ("Sin gaseosa")
-// }
+    console.log ("Ingredientes de tu hamburguesa: ")
+    mostrarIngredientes(hamburguesaSeleccionada.ingredientes)
 
 
-// let subtotal = hamburguesaSeleccionada.precioInicial + precioPapas + precioGaseosa
+// segunda parte
 
-// console.log("Subtotal: $" + subtotal)
-// hamburguesaSeleccionada.precioTotal = subtotal
+let precioPapas = 0
+let precioGaseosa = 0
 
-// // IVA
+let guarnicion = confirm("Desea agregar papas por $2?")
 
-// hamburguesaSeleccionada.sumarIva(21)
-// console.log("Total con IVA: $ " + hamburguesaSeleccionada.precioTotal)
+if (guarnicion === true) {
+    console.log ("Agregaste papas. +$2")
+    precioPapas = 2
 
-// // DESCUENTO 
+} else {
+    console.log ("Sin guarnicion")
+}
 
-// let codigo = prompt("Codigo de descuento, si tenes:")
+// tercera parte
 
-// if (codigo === "NewClient") {
-//     console.log("Codigo valido, aplicando 10% off")
-//     hamburguesaSeleccionada.aplicarDescuento(10)
-//     console.log("Total con descuento: $" + hamburguesaSeleccionada.precioTotal)
-// } else {
-//     console.log("Codigo invalido o no ingresado")
-//     console.log("Total final: $" + hamburguesaSeleccionada.precioTotal)
-// }
+let gaseosa = confirm("Desea agregar gaseosa refill por $5?")
+
+if (gaseosa === true) {
+    console.log ("Agregaste gaseosa refill. +$5")
+    precioGaseosa = 5
+} else {
+    console.log ("Sin gaseosa")
+}
 
 
-// // ciclo
+let subtotal = hamburguesaSeleccionada.precioInicial + precioPapas + precioGaseosa
 
-// seguir = confirm("Desea hacer otro pedido?")
-// }
+console.log("Subtotal: $" + subtotal)
+hamburguesaSeleccionada.precioTotal = subtotal
 
-// console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
+// IVA
+
+hamburguesaSeleccionada.sumarIva(21)
+console.log("Total con IVA: $ " + hamburguesaSeleccionada.precioTotal)
+
+// DESCUENTO 
+
+let precioBase = hamburguesaSeleccionada.precioTotal
+
+const cupon = prompt("Ingresa tu cupon de descuento:")
+let funcionDescuentoSeleccionada = null
+
+if (cupon === "NewClient") {
+    funcionDescuentoSeleccionada = NewClient
+} else if (cupon === "SegundaCompra") {
+    funcionDescuentoSeleccionada = SegundaCompra
+}
+
+if (funcionDescuentoSeleccionada) {
+    const totalConDescuento = calcularPrecioFinal(precioBase, funcionDescuentoSeleccionada)
+    hamburguesaSeleccionada.precioTotal = totalConDescuento
+    console.log(`Cupon aplicado. Total a pagar: $${totalConDescuento}`)
+} else {
+    console.log(`El cupon no es valido. Total a pagar: $${precioBase}`)
+    }
+
+// ciclo
+
+seguir = confirm("Desea hacer otro pedido?")
+}
+
+console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
 
 
