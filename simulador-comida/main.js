@@ -10,13 +10,14 @@ class Hamburguesa {
         this.precioTotal = precioInicial
         
     }
-   
-// IVA y desc
 
+    // IVA 
 
-sumarIva(porcentajeIva) {
-    this.precioTotal = this.precioTotal * (1 + porcentajeIva/100)
-}
+  sumarIva(porcentajeIva) {
+        this.precioTotal = this.precioTotal * (1 + porcentajeIva/100)
+    }
+
+    }
 
 // funcion descuentos
 
@@ -57,40 +58,78 @@ const Hamburguesas = [
     hamburguesaQueso,
     hamburguesaBacon,
     hamburguesaCompleta
-]
+] 
 
-// Metodo de busqueda 1 filter
+// map 
+const puntosPorNombre = {
+    "Hamburguesa Simple": 50,
+    "Hamburguesa con queso": 80,
+    "Hamburguesa con panceta y huevo": 120,
+    "Hamburguesa completa": 150
 
-let ingestacalorica = parseInt(prompt("Introduzca el limite calorico"))
+}
+const sistemaDePuntos = Hamburguesas.map((hamburguesa) => {
+    return {
+        ...hamburguesa,
+        puntos: puntosPorNombre[hamburguesa.nombre]
+    }
+    })
 
-const resultadoIngCalorica = Hamburguesas.filter((hamburguesa) => 
-    hamburguesa.calorias  <= ingestacalorica
-)
-console.log("Hamburguesas dentro del limite calorico: ")
-console.log(resultadoIngCalorica)
+ console.log(sistemaDePuntos)
 
-// Metodo de busqueda 2  busqueda por ingrediente find
 
-let busquedaIngrediente = prompt("Ingrese el ingrediente que quiere en su hamburguesa").toLowerCase()
+let nombreCliente = prompt("Escribi tu nombre")
 
-const hamburguesaEncontrada = Hamburguesas.find((hamburguesa) =>
-  hamburguesa.ingredientes.some((ingrediente) =>
-    ingrediente.toLowerCase().includes(busquedaIngrediente)
-    ) 
-  )
+saludar(nombreCliente)
 
-  if (hamburguesaEncontrada) {
-      console.log(`Probá nuestra ${hamburguesaEncontrada.nombre}`)
-      } else{
+
+let menuInicial = parseInt(prompt("Bienvenido a BK, " + nombreCliente + "\n" + "1) Ver menu \n 2)Buscar hamburguesas por ingrediente \n 3)Buscar hamburguesas limite calorico" )) 
+
+switch (menuInicial) {
+
+    
+    case 1: 
+    console.log("Abriendo el menu")
+    break
+    
+     // Metodo de busqueda 1  busqueda por ingrediente find
+
+     case 2:
+       let busquedaIngrediente = prompt("Ingrese el ingrediente que quiere en su hamburguesa").toLowerCase()
+
+       const hamburguesaEncontrada = Hamburguesas.find((hamburguesa) =>
+       hamburguesa.ingredientes.some((ingrediente) =>
+       ingrediente.toLowerCase().includes(busquedaIngrediente)
+        ) 
+         )
+
+       if (hamburguesaEncontrada) {
+       console.log(`Probá nuestra ${hamburguesaEncontrada.nombre}`)
+       } else{
         console.log("No tenemos ese ingrediente en ningun menu")
-      }
+       } 
+
+       break
+
+      case 3:
+    // Metodo de busqueda 2 filter
+     let ingestacalorica = parseInt(prompt("Introduzca el limite calorico"))
+
+     const resultadoIngCalorica = Hamburguesas.filter((hamburguesa) => 
+     hamburguesa.calorias  <= ingestacalorica)
+     console.log("Hamburguesas dentro del limite calorico: ")
+     console.log(resultadoIngCalorica)
+
+     break
+      default:
+        alert("Opcion invalida. Abriendo el menu") 
+
+}
 
 
 let seguir = true
 
 while (seguir) {
-
-saludar(prompt("Escribi tu nombre:"))
 
 console.log("Resumen de tu pedido: ")
 let opcionValida = false
@@ -242,5 +281,6 @@ seguir = confirm("Desea hacer otro pedido?")
 }
 
 console.log("Muchas gracias por elegirnos! Vamos a preparar tu pedido...")
+
 
 
