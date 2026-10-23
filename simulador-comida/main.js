@@ -1,13 +1,14 @@
 // definir clase
 
 class Hamburguesa {
-    constructor(id, nombre, precioInicial, ingredientes, calorias) {
+    constructor(id, nombre, precioInicial, ingredientes, calorias, puntos) {
         this.id = id
         this.nombre = nombre
         this.precioInicial = precioInicial
         this.ingredientes = ingredientes
         this.calorias = calorias
         this.precioTotal = precioInicial
+        this.puntos = puntos
         
     }
 
@@ -46,10 +47,10 @@ function mostrarIngredientes(lista) {
 
 // instancias (id, nombre, precioInicial, ingredientes, calorias) 
 
-const hamburguesaSimple = new Hamburguesa(1001,"Hamburguesa simple", 5, ["pan", "hamburguesa"], 300 )
-const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 7, ["pan", "hamburguesa", "queso"], 400)
-const hamburguesaBacon = new Hamburguesa (1003, "Hamburguesa con panceta y queso", 8, ["pan", "hamburguesa", "queso", "panceta"], 700)
-const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"], 650)
+const hamburguesaSimple = new Hamburguesa(1001,"Hamburguesa simple", 5, ["pan", "hamburguesa"], 300, 50)
+const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 7, ["pan", "hamburguesa", "queso"], 400, 80)
+const hamburguesaBacon = new Hamburguesa (1003, "Hamburguesa con panceta y queso", 8, ["pan", "hamburguesa", "queso", "panceta"], 700, 120)
+const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"], 650, 150)
 
 // array de objetos
 
@@ -59,23 +60,6 @@ const Hamburguesas = [
     hamburguesaBacon,
     hamburguesaCompleta
 ] 
-
-// map 
-const puntosPorNombre = {
-    "Hamburguesa Simple": 50,
-    "Hamburguesa con queso": 80,
-    "Hamburguesa con panceta y huevo": 120,
-    "Hamburguesa completa": 150
-
-}
-const sistemaDePuntos = Hamburguesas.map((hamburguesa) => {
-    return {
-        ...hamburguesa,
-        puntos: puntosPorNombre[hamburguesa.nombre]
-    }
-    })
-
- console.log(sistemaDePuntos)
 
 
 let nombreCliente = prompt("Escribi tu nombre")
@@ -274,6 +258,9 @@ if (funcionDescuentoSeleccionada) {
 } else {
     console.log(`El cupon no es valido. Total a pagar: $${precioBase}`)
     }
+
+    console.log(`Total de puntos acumulados: ${hamburguesaSeleccionada.puntos}`)
+
 
 // ciclo
 
