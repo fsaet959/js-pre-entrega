@@ -97,7 +97,23 @@ const mostrarResultado =  document.getElementById("mostrarResultado")
 
     renderizarHamburguesas(Hamburguesas)
 
+// funcion buscar ingredientes 
 
+const inputBusquedaIngrediente = document.getElementById("inputBusquedaIngrediente")
+
+inputBusquedaIngrediente.addEventListener("keyup", () => {
+
+    const texto = inputBusquedaIngrediente.value.toLowerCase()
+
+    const resultadoBusqueda = Hamburguesas.filter(hamburguesa => {
+        return hamburguesa.ingredientes.some( ingrediente => 
+            ingrediente.toLowerCase().includes(texto)
+
+        )
+    })
+
+    renderizarHamburguesas(resultadoBusqueda)
+})
 
     
 
