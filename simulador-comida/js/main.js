@@ -10,15 +10,15 @@ class Hamburguesa {
         this.precioTotal = precioInicial
         this.puntos = puntos
         
-    }
+        }
 
-        //     // IVA 
+             //     // IVA 
 
     //   sumarIva(porcentajeIva) {
     //         this.precioTotal = this.precioTotal * (1 + porcentajeIva/100)
-
+    // }
     }
-    
+
 
     // instancias (id, nombre, precioInicial, ingredientes, calorias) 
 
@@ -28,9 +28,6 @@ class Hamburguesa {
     const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"], 650, 150)
 
     // buscar elementos
-
-    
-    const inputBusqueda = document.getElementById("inputBusqueda")
     
 
     // array de objetos
@@ -45,36 +42,70 @@ class Hamburguesa {
 // pasar menu al html
 
 const menuHamburguesas = document.getElementById("menuHamburguesas")
+const mostrarResultado =  document.getElementById("mostrarResultado")
+
+
+// funcion p limpiar 
+
     function renderizarHamburguesas (lista){
         menuHamburguesas.innerHTML = ""
-    }
 
-    Hamburguesas.forEach(hamburguesa => {
+        lista.forEach(hamburguesa => {
         menuHamburguesas.innerHTML += `
         <div class= "card"> 
-          <h3>${hamburguesa.nombre} </h3>
+          <h3>${hamburguesa.nombre}</h3>
           <p>Precio: $${hamburguesa.precioInicial}</p>
           <p>Calorias: ${hamburguesa.calorias}</p>
-          <button>"Ver Ingredientes" </button>
+
+
+          <button class="btn-ver-ingredientes" hambId="${hamburguesa.id}">
+           Ver Ingredientes
+          </button>
           </div>
         `
-    });
+    })
+
+    activarBotonesIngredientes() 
+     }
+
+    // activar botones 
+
+    function activarBotonesIngredientes() {
+        const botonesIng = document.querySelectorAll(".btn-ver-ingredientes")
+
+        botonesIng.forEach(boton => {
+            boton.addEventListener("click", () => {
+                const id = boton.getAttribute("hambId")
+                verIngredientes(id)
+            })
+        })
+    }
+
+    // funcion ver ingredientes
+
+    function verIngredientes(id) {
+        const ingHamburguesa = Hamburguesas.find ((hamburguesa) => {
+            if(hamburguesa.id == id) {
+                return true            
+        } else {
+            return false
+        }
+        })
+
+        mostrarResultado.textContent = `Ingredientes de ${ingHamburguesa.ingredientes.join(", ")}`
+    }
+
+    renderizarHamburguesas(Hamburguesas)
 
 
-// evento click en el boton de busqueda
 
-// const botonBusqueda = document.getElementById("botonBusqueda")
-// botonBusqueda.addEventListener(`click`. () => )
+    
 
 
-// constructor(id, nombre, precioInicial, ingredientes, calorias, puntos) {
-        // this.id = id
-        // this.nombre = nombre
-        // this.precioInicial = precioInicial
-        // this.ingredientes = ingredientes
-        // this.calorias = calorias
-        // this.precioTotal = precioInicial
-        // this.puntos = puntos
+
+
+
+
 
 
 
