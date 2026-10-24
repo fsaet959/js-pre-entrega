@@ -20,8 +20,8 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color:
-}
+    color: #2c3e50 ;
+ }
 
 /* input */
 
@@ -57,7 +57,7 @@ input:focus {
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.88);
-    transition: tranform 0.2s ease, box-shadow 0.2 ease;
+    transition: transform 0.2s ease, box-shadow 0.2 ease;
 }
 
 .card:hover {
@@ -76,9 +76,11 @@ input:focus {
 }
 
 
-/* boton */
+/* botones */
 
-.btn-ver-ingredientes {
+.btn-ver-ingredientes, 
+.btn-agregar,
+.btn-quitar {
     margin-top: 1rem;
     padding: 0.7rem 1rem;
     background: #3498db;
@@ -90,9 +92,12 @@ input:focus {
     width: 100%
 }
 
-.btn-ver-ingredientes:hover {
+.btn-ver-ingredientes:hover,
+.btn-agregar:hover,
+.btn-quitar:hover {
     background: #1f78b4;
 }
+
 
 
 /* resultado */

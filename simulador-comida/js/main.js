@@ -39,6 +39,7 @@ class Hamburguesa {
         hamburguesaCompleta
     ]
     
+    let totalPedido = 0
 // pasar menu al html
 
 const menuHamburguesas = document.getElementById("menuHamburguesas")
@@ -57,15 +58,24 @@ const mostrarResultado =  document.getElementById("mostrarResultado")
           <p>Precio: $${hamburguesa.precioInicial}</p>
           <p>Calorias: ${hamburguesa.calorias}</p>
 
-
           <button class="btn-ver-ingredientes" hambId="${hamburguesa.id}">
            Ver Ingredientes
+          </button>
+
+          <button class="btn-agregar" hambId="${hamburguesa.id}">
+           Agregar al pedido
+          </button>
+
+          <button class="btn-quitar" hambId="${hamburguesa.id}">
+           Quitar del pedido
           </button>
           </div>
         `
     })
 
     activarBotonesIngredientes() 
+    activarBotonesAgregar()
+    activarBotonesQuitar()
      }
 
     // activar botones 
@@ -81,6 +91,31 @@ const mostrarResultado =  document.getElementById("mostrarResultado")
         })
     }
 
+    function activarBotonesAgregar() {
+        const botonesAgregar = document.querySelectorAll(".btn-agregar")
+
+        botonesAgregar.forEach(boton => {
+            boton.addEventListener("click", () => {
+                const id = boton.getAttribute("hambId")
+                agregarAlPedido(id)
+            })
+        })
+    }
+
+    function activarBotonesQuitar() {
+        const botonesQuitar = document.querySelectorAll(".btn-quitar")
+
+        botonesQuitar.forEach(boton => {
+            boton.addEventListener("click", () => {
+                const id = boton.getAttribute("hambId")
+                quitarDelPedido(id)
+            })
+        })
+    }
+
+
+
+
     // funcion ver ingredientes
 
     function verIngredientes(id) {
@@ -93,6 +128,25 @@ const mostrarResultado =  document.getElementById("mostrarResultado")
         })
 
         mostrarResultado.textContent = `Ingredientes incluidos en esta opcion: ${ingHamburguesa.ingredientes.join(", ")}`
+    }
+
+    // funcion para sumar al pedido
+
+    function agregarAlPedido (id) {
+        const hamburguesaSeleccionada = Hamburguesas.find((hamburguesa) => {
+            return hamburguesa.id == id
+        })
+        totalPedido += hamburguesaSeleccionada.precioInicial
+
+        mostrarResultado.textContent = `Total del pedido: $${totalPedido}`
+    }
+
+    function quitarDelPedido (id) {
+        const hamburguesaSeleccionada = Hamburguesas.find ((hamburguesa) =>{
+            return hamburguesa.id == id
+        })
+        totalPedido -= hamburguesaSeleccionada.precioInicial
+        mostrarResultado.textContent = `Total del pedido: $${totalPedido}`
     }
 
     renderizarHamburguesas(Hamburguesas)
@@ -127,6 +181,10 @@ inputBusquedaIngrediente.addEventListener("keyup", () => {
 
 
 
+
+
+
+
 //     }
 
 // // funcion descuentos
@@ -144,19 +202,7 @@ inputBusquedaIngrediente.addEventListener("keyup", () => {
 //     alert("Bienvenido/a a BK, " + nombre)
 // }
 
-// // funcion de reporte 
 
-// function mostrarIngredientes(lista) {
-
-//     for (const ingrediente of lista) {
-//       console.log("* " + ingrediente)
-//   }
-// }
-
-
-
-
- 
 
 
 // let nombreCliente = prompt("Escribi tu nombre")
