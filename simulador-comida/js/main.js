@@ -92,7 +92,7 @@ const mostrarResultado =  document.getElementById("mostrarResultado")
         }
         })
 
-        mostrarResultado.textContent = `Ingredientes de ${ingHamburguesa.ingredientes.join(", ")}`
+        mostrarResultado.textContent = `Ingredientes incluidos en esta opcion: ${ingHamburguesa.ingredientes.join(", ")}`
     }
 
     renderizarHamburguesas(Hamburguesas)
