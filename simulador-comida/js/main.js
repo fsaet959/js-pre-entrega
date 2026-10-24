@@ -1,22 +1,84 @@
 // definir clase
 
-// class Hamburguesa {
-//     constructor(id, nombre, precioInicial, ingredientes, calorias, puntos) {
-//         this.id = id
-//         this.nombre = nombre
-//         this.precioInicial = precioInicial
-//         this.ingredientes = ingredientes
-//         this.calorias = calorias
-//         this.precioTotal = precioInicial
-//         this.puntos = puntos
+class Hamburguesa {
+    constructor(id, nombre, precioInicial, ingredientes, calorias, puntos) {
+        this.id = id
+        this.nombre = nombre
+        this.precioInicial = precioInicial
+        this.ingredientes = ingredientes
+        this.calorias = calorias
+        this.precioTotal = precioInicial
+        this.puntos = puntos
         
-//     }
+    }
 
-//     // IVA 
+        //     // IVA 
 
-//   sumarIva(porcentajeIva) {
-//         this.precioTotal = this.precioTotal * (1 + porcentajeIva/100)
-//     }
+    //   sumarIva(porcentajeIva) {
+    //         this.precioTotal = this.precioTotal * (1 + porcentajeIva/100)
+
+    }
+    
+
+    // instancias (id, nombre, precioInicial, ingredientes, calorias) 
+
+    const hamburguesaSimple = new Hamburguesa(1001,"Hamburguesa simple", 5, ["pan", "hamburguesa"], 300, 50)
+    const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 7, ["pan", "hamburguesa", "queso"], 400, 80)
+    const hamburguesaBacon = new Hamburguesa (1003, "Hamburguesa con panceta y queso", 8, ["pan", "hamburguesa", "queso", "panceta"], 700, 120)
+    const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"], 650, 150)
+
+    // buscar elementos
+
+    
+    const inputBusqueda = document.getElementById("inputBusqueda")
+    
+
+    // array de objetos
+
+    const Hamburguesas = [
+        hamburguesaSimple,
+        hamburguesaQueso,
+        hamburguesaBacon,
+        hamburguesaCompleta
+    ]
+    
+// pasar menu al html
+
+const menuHamburguesas = document.getElementById("menuHamburguesas")
+    function renderizarHamburguesas (lista){
+        menuHamburguesas.innerHTML = ""
+    }
+
+    Hamburguesas.forEach(hamburguesa => {
+        menuHamburguesas.innerHTML += `
+        <div class= "card"> 
+          <h3>${hamburguesa.nombre} </h3>
+          <p>Precio: $${hamburguesa.precioInicial}</p>
+          <p>Calorias: ${hamburguesa.calorias}</p>
+          <button>"Ver Ingredientes" </button>
+          </div>
+        `
+    });
+
+
+// evento click en el boton de busqueda
+
+// const botonBusqueda = document.getElementById("botonBusqueda")
+// botonBusqueda.addEventListener(`click`. () => )
+
+
+// constructor(id, nombre, precioInicial, ingredientes, calorias, puntos) {
+        // this.id = id
+        // this.nombre = nombre
+        // this.precioInicial = precioInicial
+        // this.ingredientes = ingredientes
+        // this.calorias = calorias
+        // this.precioTotal = precioInicial
+        // this.puntos = puntos
+
+
+
+
 
 //     }
 
@@ -45,21 +107,9 @@
 // }
 
 
-// // instancias (id, nombre, precioInicial, ingredientes, calorias) 
 
-// const hamburguesaSimple = new Hamburguesa(1001,"Hamburguesa simple", 5, ["pan", "hamburguesa"], 300, 50)
-// const hamburguesaQueso = new Hamburguesa(1002, "Hamburguesa con queso", 7, ["pan", "hamburguesa", "queso"], 400, 80)
-// const hamburguesaBacon = new Hamburguesa (1003, "Hamburguesa con panceta y queso", 8, ["pan", "hamburguesa", "queso", "panceta"], 700, 120)
-// const hamburguesaCompleta = new Hamburguesa(1004, "Hamburguesa completa", 10, ["pan", "hamburguesa", "queso", "tomate", "huevo"], 650, 150)
 
-// // array de objetos
-
-// const Hamburguesas = [
-//     hamburguesaSimple,
-//     hamburguesaQueso,
-//     hamburguesaBacon,
-//     hamburguesaCompleta
-// ] 
+ 
 
 
 // let nombreCliente = prompt("Escribi tu nombre")
